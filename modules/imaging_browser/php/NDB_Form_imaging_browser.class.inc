@@ -359,22 +359,26 @@ class NDB_Form_Imaging_Browser extends NDB_Form
                 );
 
                 if ($curCaveat == true) {
-                    $file = new MRIFile($curFileID);
-                    $insertSet['SeriesUID'] = $file->getParameter(
-                        'series_instance_uid'
-                    );
-                    $insertSet['TarchiveID'] = $file->getParameter('TarchiveSource');
-                    $insertSet['MincFile'] = $file->getParameter('File');
-                    $insertSet['PatientName'] = $file->getParameter('patient_name');
-                    $insertSet['CandID'] = $candid;
-                    $insertSet['Visit_label'] = $visit_label;
-                    $insertSet['CheckID'] = null;
-                    $insertSet['Severity'] = 'warning';
-                    $insertSet['Header'] = 'Manual Caveat Set by ' 
-                        . $user->getUsername();
-
-                    $this->DB->insert("mri_violations_log", $insertSet);
+                    $setorunset = "set";
+                } else {
+                    $setorunset = "unset";
                 }
+                
+                $file = new MRIFile($curFileID);
+                $insertSet['SeriesUID'] = $file->getParameter(
+                    'series_instance_uid'
+                );
+                $insertSet['TarchiveID'] = $file->getParameter('TarchiveSource');
+                $insertSet['MincFile'] = $file->getParameter('File');
+                $insertSet['PatientName'] = $file->getParameter('patient_name');
+                $insertSet['CandID'] = $candid;
+                $insertSet['Visit_label'] = $visit_label;
+                $insertSet['CheckID'] = null;
+                $insertSet['Severity'] = 'warning';
+                $insertSet['Header'] = 'Manual Caveat '. $setorunset .' by ' 
+                    . $user->getUsername();
+
+                $this->DB->insert("mri_violations_log", $insertSet);
             }
         }
     }
