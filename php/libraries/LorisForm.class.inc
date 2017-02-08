@@ -1962,7 +1962,7 @@ class LorisForm
             ) {
                     $value = $this->getValue($name);
                 if ($value) {
-                    $arr[$name] = sprintf("%s-00-00", $value);
+                    $arr[$name] = sprintf("%s-01-01", $value);
                 } else {
                     $arr[$name] = '';
                 }
@@ -1976,7 +1976,7 @@ class LorisForm
             ) {
                     $value = $this->getValue($name);
                 if ($value) {
-                    $arr[$name] = sprintf("%s-00", $value);
+                    $arr[$name] = sprintf("%s-01", $value);
                 } else {
                     $arr[$name] = '';
                 }
