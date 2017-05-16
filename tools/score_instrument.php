@@ -84,7 +84,7 @@ if($test_name != 'all') {
     }
 }
 
-$db =& Database::singleton();
+$db = Database::singleton();
 
 // check that the $test_name is a valid instrument
 if($test_name== 'all') {
@@ -128,7 +128,7 @@ foreach($result as $test) {
     // loop the list and derive scores for each record
     foreach ($result as $record) {
         // make an instance of the instrument's object
-        $instrument =& NDB_BVL_Instrument::factory($test_name, $record['CommentID'],null);
+        $instrument = NDB_BVL_Instrument::factory($test_name, $record['CommentID'],null);
 
         // check if the instrument has a scoring method
         if (!method_exists($instrument, "score")) {
